@@ -1,0 +1,25 @@
+<div class="modal-backdrop" (click)="closeModal()"></div>
+
+<div class="application-modal">
+<button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>----Application forum----</h2>
+
+  <form (submit)="submitForm()">
+    <label>Your Full name</label>
+    <input type="text" [(ngModel)]="fullName" name="fullName" required />
+
+    <label>COVER LETTER</label>
+    <textarea rows="10" [(ngModel)]="coverLetter" name="coverLetter" required></textarea>
+
+    <div class="upload-box">
+      <label for="fileUpload">
+        <i class="fa fa-upload upload-icon"></i><br />
+        <span class="browse">Browse photo or drop here</span><br />
+        <span class="hint">A photo larger than 400 pixels works best. Max size: 5 MB</span>
+      </label>
+      <input type="file" id="fileUpload" (change)="handleFile($event)" hidden />
+    </div>
+
+    <button class="submit-btn" type="submit">Submit your application</button>
+  </form>
+</div>

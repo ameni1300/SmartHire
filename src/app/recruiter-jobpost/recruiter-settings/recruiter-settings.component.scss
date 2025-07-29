@@ -1,0 +1,151 @@
+.navbar {
+  background-color: #309689;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    .brand-logo {
+      height: 40px;
+    }
+
+    .brand-name {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 25px; // ✅ plus d’espace entre les liens
+
+    a {
+      color: white;
+      font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      cursor: pointer; // ✅ curseur main
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2); // ✅ effet bouton survol
+        transform: translateY(-2px); // ✅ effet visuel subtil
+      }
+    }
+  }
+
+  .profile-circle img {
+    width: 70px;
+    height: 50px;
+  }
+  .profile-menu {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: white;
+  color: #090909;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 160px;
+  z-index: 100;
+  font-family: 'Segoe UI', sans-serif;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  li {
+    padding: 10px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #f1f1f1;
+    }
+
+    .logout-icon {
+      color: #28a745;
+      margin-right: 8px;
+    }
+  }
+
+  li + li {
+    border-top: 1px solid #e5e5e5;
+  }
+}
+
+}
+
+.settings-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  h2 {
+    color: #309689;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .settings-section {
+    margin-bottom: 30px;
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+  }
+
+  .settings-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    button {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      color: white;
+      background-color: #309689;
+      cursor: pointer;
+
+      &.danger {
+        background-color: #dc3545;
+      }
+    }
+  }
+}

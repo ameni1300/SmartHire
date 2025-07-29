@@ -1,0 +1,77 @@
+{
+  "GENERAL": {
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "SEARCH_JOB": "Search Job",
+    "LEARN_MORE": "Learn more",
+    "JOB_SEEKERS": "Job Seekers",
+    "OR": "OR",
+    "RECRUITERS": "Recruiters",
+    "CONTACT_US": "Contact US",
+    "PRIVACY_POLICY": "Privacy Policy",
+    "TERMS_CONDITIONS": "Terms & Conditions"
+  },
+  "HOME": {
+    "TITLE": "Find Your Dream Job Today!",
+    "SUBTITLE": "Find your next opportunity. Get hired smarter with AI-powered guidance.",
+    "COMPANY_SECTION": {
+      "TITLE": "Good Life Begins With A Good Company",
+      "DESCRIPTION": "At SmartHire, we believe that finding the right company can transform your life. With the power of AI, personalized recommendations, and a smart CV assistant, we're here to guide you toward opportunities that truly match your potential. Let's build your future—one smart decision at a time."
+    },
+    "JOB_CATEGORIES": "Job Categories",
+    "CATEGORIES_SUBTITLE": "From tech to marketing, discover opportunities in every domain.",
+    "FUTURE_SECTION": {
+      "TITLE": "Create A Better Future For Yourself",
+      "DESCRIPTION": "With SmartHire, the right connection is just one click away. So who <strong>'are you?'</strong>"
+    },
+    "HOW_IT_WORKS": {
+      "TITLE": "How It Works",
+      "SUBTITLE": "Discover how SmartHire helps you move from search to success — in just a few simple steps.",
+      "STEP1": "Create account",
+      "STEP1_DESC": "Few steps to create an account and enter in the world of new opportunities",
+      "STEP2": "Upload CV/Resume",
+      "STEP2_DESC": "Upload your CV and let our AI help our to enhance it and highlight what recruiters want to see.",
+      "STEP3": "Find suitable job",
+      "STEP3_DESC": "Explore thousands of opportunities across industries. Use filters to find roles that match your skills and interests.",
+      "STEP4": "Apply job",
+      "STEP4_DESC": "Connect with employers, receive interview invites, and land the job that fits your future."
+    },
+    "CONTACT": {
+      "TITLE": "Take Action Now With SmartHire !",
+      "DESCRIPTION": "Have questions, ideas, or need support? Let's talk. SmartHire is just one message away.",
+      "PHONE": "+555 55 555 555",
+      "EMAIL": "support@SmartHire.com"
+    },
+    "STATS": {
+      "JOBS": "JOBS",
+      "CANDIDATES": "CANDIDATES",
+      "COMPANIES": "COMPANIES",
+      "CLIENTS": "Clients worldwide",
+      "CLIENTS_DESC": "Trusted by thousands of professionals across the globe who rely on SmartHire to advance their careers.",
+      "RESUMES": "Active resume",
+      "RESUMES_DESC": "Dynamic and updated CVs submitted by candidates seeking the right opportunity, powered by AI guidance.",
+      "COMPANIES_STAT": "Companies",
+      "COMPANIES_DESC": "A growing network of employers looking for passionate, skilled talent and ready to hire."
+    }
+  },
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About Us",
+    "CONTACT": "Contact Us"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "Whether you're looking for your next opportunity or your next hire, SmartHire is ready to support you",
+    "COMPANY": "Company",
+    "ABOUT": "About Us",
+    "CONTACT": "Contact us",
+    "CANDIDATES": "For Candidates",
+    "EMPLOYERS": "For Employers",
+    "CATEGORIES": "Job Categories",
+    "GRAPHIC_DESIGN": "Graphic Design",
+    "HOTELS_TOURISM": "Hotels & Tourism",
+    "DEVELOPMENT": "Development",
+    "EDUCATION": "Education",
+    "FINANCIAL": "Financial Services",
+    "LANGUAGE": "Language"
+  }
+}

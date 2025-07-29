@@ -1,0 +1,77 @@
+{
+  "GENERAL": {
+    "LOGIN": "Connexion",
+    "REGISTER": "S'inscrire",
+    "SEARCH_JOB": "Rechercher un emploi",
+    "LEARN_MORE": "En savoir plus",
+    "JOB_SEEKERS": "Candidats",
+    "OR": "OU",
+    "RECRUITERS": "Recruteurs",
+    "CONTACT_US": "Contactez-nous",
+    "PRIVACY_POLICY": "Politique de confidentialité",
+    "TERMS_CONDITIONS": "Conditions générales"
+  },
+  "HOME": {
+    "TITLE": "Trouvez le job de vos rêves dès aujourd'hui !",
+    "SUBTITLE": "Trouvez votre prochaine opportunité. Faites-vous embaucher plus intelligemment avec notre assistance IA.",
+    "COMPANY_SECTION": {
+      "TITLE": "Une bonne vie commence avec une bonne entreprise",
+      "DESCRIPTION": "Chez SmartHire, nous croyons que trouver la bonne entreprise peut transformer votre vie. Avec la puissance de l'IA, des recommandations personnalisées et un assistant CV intelligent, nous sommes là pour vous guider vers des opportunités qui correspondent vraiment à votre potentiel. Construisons votre avenir - une décision intelligente à la fois."
+    },
+    "JOB_CATEGORIES": "Catégories d'emplois",
+    "CATEGORIES_SUBTITLE": "De la tech au marketing, découvrez des opportunités dans tous les domaines.",
+    "FUTURE_SECTION": {
+      "TITLE": "Créez un meilleur avenir pour vous-même",
+      "DESCRIPTION": "Avec SmartHire, la bonne connexion est à un clic. Alors <strong>'qui êtes-vous ?'</strong>"
+    },
+    "HOW_IT_WORKS": {
+      "TITLE": "Comment ça marche",
+      "SUBTITLE": "Découvrez comment SmartHire vous aide à passer de la recherche au succès en quelques étapes simples.",
+      "STEP1": "Créer un compte",
+      "STEP1_DESC": "Quelques étapes pour créer un compte et entrer dans le monde des nouvelles opportunités",
+      "STEP2": "Télécharger CV",
+      "STEP2_DESC": "Téléchargez votre CV et laissez notre IA l'améliorer et mettre en valeur ce que les recruteurs veulent voir.",
+      "STEP3": "Trouver un emploi",
+      "STEP3_DESC": "Explorez des milliers d'opportunités dans tous les secteurs. Utilisez les filtres pour trouver des rôles qui correspondent à vos compétences et intérêts.",
+      "STEP4": "Postuler",
+      "STEP4_DESC": "Connectez-vous avec les employeurs, recevez des invitations à des entretiens et obtenez le poste qui correspond à votre avenir."
+    },
+    "CONTACT": {
+      "TITLE": "Agissez maintenant avec SmartHire !",
+      "DESCRIPTION": "Vous avez des questions, des idées ou besoin d'aide ? Parlons-en. SmartHire n'est qu'à un message.",
+      "PHONE": "+555 55 555 555",
+      "EMAIL": "support@SmartHire.com"
+    },
+    "STATS": {
+      "JOBS": "EMPLOIS",
+      "CANDIDATES": "CANDIDATS",
+      "COMPANIES": "ENTREPRISES",
+      "CLIENTS": "Clients dans le monde",
+      "CLIENTS_DESC": "Des milliers de professionnels à travers le monde font confiance à SmartHire pour faire avancer leur carrière.",
+      "RESUMES": "CV actifs",
+      "RESUMES_DESC": "CV dynamiques et mis à jour soumis par des candidats recherchant la bonne opportunité, avec l'aide de l'IA.",
+      "COMPANIES_STAT": "Entreprises",
+      "COMPANIES_DESC": "Un réseau croissant d'employeurs à la recherche de talents passionnés et qualifiés, prêts à embaucher."
+    }
+  },
+  "NAV": {
+    "HOME": "Accueil",
+    "ABOUT": "À propos",
+    "CONTACT": "Contact"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "Que vous cherchiez votre prochaine opportunité ou votre prochain recrutement, SmartHire est prêt à vous aider",
+    "COMPANY": "Entreprise",
+    "ABOUT": "À propos",
+    "CONTACT": "Contactez-nous",
+    "CANDIDATES": "Pour candidats",
+    "EMPLOYERS": "Pour employeurs",
+    "CATEGORIES": "Catégories d'emplois",
+    "GRAPHIC_DESIGN": "Design graphique",
+    "HOTELS_TOURISM": "Hôtels & Tourisme",
+    "DEVELOPMENT": "Développement",
+    "EDUCATION": "Éducation",
+    "FINANCIAL": "Services financiers",
+    "LANGUAGE": "Langue"
+  }
+}

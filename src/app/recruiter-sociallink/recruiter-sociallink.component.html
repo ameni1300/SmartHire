@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="logo-group">
+    <img src="../../assets/blacklogo.png" alt="SmartHire Logo" class="logo" />
+    <span class="brand">SmartHire</span>
+  </div>
+
+  <div class="step-indicator">
+  <div class="step ">
+    <img src="../../assets/jobseeker/profile.png" alt="Personal Icon" />
+    <span>Company Info</span>
+  </div>
+  <div class="step">
+    <img src="../../assets/recruiter/loop.png" alt="Profile Icon" />
+    <span>Founding Info</span>
+  </div>
+  <div class="step active">
+    <img src="../../assets/jobseeker/web.png" alt="Social Icon" />
+    <span>Social Links</span>
+  </div>
+  <div class="step">
+    <img src="../../assets/recruiter/phone.png" alt="Settings Icon" />
+    <span>Contact</span>
+  </div>
+</div>
+
+ <form class="form">
+    <div class="form-section">
+      <!-- Facebook -->
+      <div class="social-link">
+        <div class="social-platform">Facebook</div>
+        <div class="social-input">
+          <input type="url" placeholder="Profile link/url." [(ngModel)]="facebook" name="facebook">
+        </div>
+      </div>
+
+      <!-- Twitter -->
+      <div class="social-link">
+        <div class="social-platform">Twitter</div>
+        <div class="social-input">
+          <input type="url" placeholder="Profile link/url." [(ngModel)]="twitter" name="twitter">
+        </div>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="social-link">
+        <div class="social-platform">LinkedIn</div>
+        <div class="social-input">
+          <input type="url" placeholder="Profile link/url." [(ngModel)]="linkedin" name="linkedin">
+        </div>
+      </div>
+
+      <!-- GitHub -->
+      <div class="social-link">
+        <div class="social-platform">GitHub</div>
+        <div class="social-input">
+          <input type="url" placeholder="Profile link/url." [(ngModel)]="github" name="github">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button routerLink="/recruiter-founding" type="button" class="previous-btn">Previous</button>
+        <button type="button" class="next-btn" (click)="onNext()">Save & Next →</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+    
+
+  

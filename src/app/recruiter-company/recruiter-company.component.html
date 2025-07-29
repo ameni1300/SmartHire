@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="logo-group">
+    <img src="../../assets/blacklogo.png" alt="SmartHire Logo" class="logo" />
+    <span class="brand">SmartHire</span>
+  </div>
+
+  <div class="step-indicator">
+  <div class="step active">
+    <img src="../../assets/jobseeker/profile.png" alt="Personal Icon" />
+    <span>Company Info</span>
+  </div>
+  <div class="step">
+    <img src="../../assets/recruiter/loop.png" alt="Profile Icon" />
+    <span>Founding Info</span>
+  </div>
+  <div class="step">
+    <img src="../../assets/jobseeker/web.png" alt="Social Icon" />
+    <span>Social Links</span>
+  </div>
+  <div class="step">
+    <img src="../../assets/recruiter/phone.png" alt="Settings Icon" />
+    <span>Contact</span>
+  </div>
+</div>
+
+
+  <form class="form" [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group image-upload">
+        <label>Company Logo</label>
+        <div class="image-drop" (click)="profileInput.click()">
+          <ng-container *ngIf="!profilePicture">
+            <span>Browse photo or drop here</span>
+            <small>A photo larger than 400 pixels works best. Max photo size is 5MB.</small>
+          </ng-container>
+          <img *ngIf="profilePicture" [src]="profilePicture" alt="Preview" />
+        </div>
+        <input type="file" hidden (change)="onProfileSelected($event)" #profileInput accept="image/*" />
+      </div>
+
+      <div class="form-group-group">
+        <div class="form-group">
+          <label>Nationality <span class="required-star">*</span></label>
+          <select formControlName="nationality">
+            <option value="" disabled>Select</option>
+            <option *ngFor="let nationality of nationalities" [value]="nationality">{{ nationality }}</option>
+          </select>
+          <div class="error-message" *ngIf="personalForm.get('nationality')?.invalid && personalForm.get('nationality')?.touched">
+            Nationality is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Company name <span class="required-star">*</span></label>
+          <input type="text" formControlName="companyName" placeholder="Full name" />
+          <div class="error-message" *ngIf="personalForm.get('companyName')?.invalid && personalForm.get('companyName')?.touched">
+            Name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row biography">
+      <div class="form-group full-width">
+        <label>Company description <span class="required-star">*</span></label>
+        <textarea formControlName="companyDescription" placeholder="Write down your biography here. Let the employers know who you are."></textarea>
+        <div class="error-message" *ngIf="personalForm.get('companyDescription')?.invalid && personalForm.get('companyDescription')?.touched">
+          Minimum 20 characters required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="personalForm.invalid">Save & Next →</button>
+    </div>
+  </form>
+</div>

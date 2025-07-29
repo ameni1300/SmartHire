@@ -1,0 +1,94 @@
+<div class="container">
+  <!-- Logo -->
+  <div class="logo-group">
+    <img src="../../assets/blacklogo.png" alt="SmartHire Logo" class="logo" />
+    <span class="brand">SmartHire</span>
+  </div>
+
+  <!-- Étapes -->
+  <div class="step-indicator">
+    <div class="step">
+      <img src="../../assets/jobseeker/personal.png" alt="Personal Icon" />
+      <span>Personal</span>
+    </div>
+    <div class="step">
+      <img src="../../assets/jobseeker/profile.png" alt="Profile Icon" />
+      <span>Profile</span>
+    </div>
+    <div class="step active">
+      <img src="../../assets/jobseeker/web.png" alt="Social Icon" />
+      <span>Social Links</span>
+    </div>
+    <div class="step">
+      <img src="../../assets/jobseeker/settings.png" alt="Settings Icon" />
+      <span>Account Setting</span>
+    </div>
+  </div>
+
+  <!-- Formulaire -->
+  <form class="form" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <!-- Facebook -->
+      <div class="social-link">
+        <div class="social-platform">Facebook</div>
+        <div class="social-input">
+          <input
+            type="url"
+            [(ngModel)]="facebook"
+            name="facebook"
+            placeholder="Profile link/url."
+          />
+        </div>
+      </div>
+
+      <!-- Twitter -->
+      <div class="social-link">
+        <div class="social-platform">Twitter</div>
+        <div class="social-input">
+          <input
+            type="url"
+            [(ngModel)]="twitter"
+            name="twitter"
+            placeholder="Profile link/url."
+          />
+        </div>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="social-link">
+        <div class="social-platform">LinkedIn</div>
+        <div class="social-input">
+          <input
+            type="url"
+            [(ngModel)]="linkedin"
+            name="linkedin"
+            placeholder="Profile link/url."
+          />
+        </div>
+      </div>
+
+      <!-- GitHub -->
+      <div class="social-link">
+        <div class="social-platform">GitHub</div>
+        <div class="social-input">
+          <input
+            type="url"
+            [(ngModel)]="github"
+            name="github"
+            placeholder="Profile link/url."
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="form-actions">
+      <button type="button" class="previous-btn" routerLink="/jobseeker-profil">
+        ← Previous
+      </button>
+      <button type="submit" class="next-btn">
+        Save & Next →
+      </button>
+    </div>
+  </form>
+</div>

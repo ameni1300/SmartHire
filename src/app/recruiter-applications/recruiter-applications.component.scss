@@ -1,0 +1,347 @@
+.navbar {
+  background-color: #309689;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    .brand-logo {
+      height: 40px;
+    }
+
+    .brand-name {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 25px;
+
+    a {
+      color: white;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.95rem;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .profile-circle img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: white;
+    }
+  }
+
+  .profile-menu {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: white;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 200px;
+    z-index: 100;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      padding: 12px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+
+      .logout-icon {
+        color: #e74c3c;
+      }
+    }
+
+    li + li {
+      border-top: 1px solid #eee;
+    }
+  }
+}
+
+.application-page {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 60px);
+
+  h2 {
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+    font-weight: 600;
+  }
+
+  .total-count {
+    margin-bottom: 2rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .app-card {
+    background-color: white;
+    color: #2d3748;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      .applicant-photo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #e2e8f0;
+      }
+
+      h4 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #2d3748;
+      }
+
+      .role {
+        font-size: 0.85rem;
+        color: #718096;
+        margin-top: 4px;
+      }
+    }
+
+    .card-body {
+      p {
+        margin: 0.5rem 0;
+        font-size: 0.9rem;
+        color: #4a5568;
+
+        strong {
+          color: #2d3748;
+        }
+      }
+    }
+
+    .card-footer {
+      margin-top: 1.5rem;
+      .see-all {
+        color: #309689;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #1e7d74;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-wrapper {
+  width: 85%;
+  max-width: 1000px;
+  max-height: 85vh;
+  background: white;
+  color: #2d3748;
+  padding: 2rem;
+  border-radius: 12px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  color: #718096;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #e53e3e;
+  }
+}
+
+.modal-grid {
+  display: flex;
+  gap: 2rem;
+
+  .left, .right {
+    flex: 1;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    .photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e2e8f0;
+    }
+
+    h3 {
+      margin: 0;
+      color: #2d3748;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin: 0.25rem 0 0;
+      color: #718096;
+      font-size: 0.95rem;
+    }
+  }
+
+  .section {
+    margin: 1.5rem 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #edf2f7;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h4 {
+      color: #309689;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    pre, p {
+      white-space: pre-wrap;
+      line-height: 1.6;
+      color: #4a5568;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  }
+
+  .info div, .contact div {
+    margin: 1rem 0;
+
+    strong {
+      display: block;
+      font-size: 0.85rem;
+      color: #718096;
+      margin-bottom: 0.25rem;
+    }
+
+    span, p {
+      color: #2d3748;
+      font-size: 0.95rem;
+    }
+  }
+
+  .resume-download {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f7fafc;
+    border-radius: 8px;
+
+    p {
+      margin-bottom: 0.75rem;
+      color: #4a5568;
+      font-size: 0.95rem;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.25rem;
+      background-color: #309689;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #1e7d74;
+      }
+    }
+  }
+}

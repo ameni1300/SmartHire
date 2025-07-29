@@ -1,0 +1,79 @@
+<div class="container">
+  <!-- Header avec logo -->
+  <div class="logo-group">
+    <img src="../../assets/blacklogo.png" alt="SmartHire Logo" class="logo" />
+    <span class="brand">SmartHire</span>
+  </div>
+
+  <!-- Barre de progression -->
+  <div class="step-indicator">
+    <div class="step">
+      <img src="../../assets/jobseeker/personal.png" alt="Personal" />
+      <span>Personal</span>
+    </div>
+    <div class="step">
+      <img src="../../assets/jobseeker/profile.png" alt="Profile" />
+      <span>Profile</span>
+    </div>
+    <div class="step">
+      <img src="../../assets/jobseeker/web.png" alt="Social" />
+      <span>Social Links</span>
+    </div>
+    <div class="step active">
+      <img src="../../assets/jobseeker/settings.png" alt="Settings" />
+      <span>Account</span>
+    </div>
+  </div>
+
+  <!-- Formulaire principal -->
+ <div class="Form">
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="form-fields-right">
+    <h2 class="section-title">Contact Information</h2>
+    
+    <div class="contact-fields">
+      <!-- Champ Location -->
+      <div class="contact-group">
+        <label>Location <span class="required">*</span></label>
+        <input type="text" formControlName="location" 
+               placeholder="Enter your location" required>
+        <div *ngIf="accountForm.get('location')?.invalid && 
+                   (accountForm.get('location')?.dirty || accountForm.get('location')?.touched)"
+             class="error-message">
+          Location is required
+        </div>
+      </div>
+      
+      <!-- Champ Phone -->
+      <div class="contact-group">
+        <label>Phone Number <span class="required">*</span></label>
+        <input type="tel" formControlName="phone" 
+               placeholder="Enter phone number" required>
+        <div *ngIf="accountForm.get('phone')?.invalid && 
+                   (accountForm.get('phone')?.dirty || accountForm.get('phone')?.touched)"
+             class="error-message">
+          Valid phone number is required
+        </div>
+      </div>
+      
+      <!-- Champ Website -->
+      <div class="contact-group">
+        <label>Personal Website</label>
+        <div class="website-input">
+          <img src="../../assets/jobseeker/website.png" alt="Website icon" />
+          <input type="url" formControlName="portfolioUrl" 
+                 placeholder="https://example.com">
+        </div>
+      </div>
+    </div>
+
+    <!-- Boutons de navigation -->
+    <div class="form-actions">
+      <button type="button" routerLink="/jobseeker-social" class="previous-btn">
+        Previous
+      </button>
+      <button type="submit" [disabled]="accountForm.invalid" class="next-btn">
+        Finish
+      </button>
+    </div>
+  </form>
+</div>

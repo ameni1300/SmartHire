@@ -1,0 +1,57 @@
+<div class="signin-container">
+  <!-- Section gauche (visuelle) -->
+  <div class="signin-left">
+    <div class="logo-group">
+      <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+      <span class="brand-name">SmartHire</span>
+    </div>
+    
+    <img src="../../assets/shake.png" alt="Handshake" class="signin-image">
+    
+    <div class="signin-overlay">
+      <h3>Where talent meets opportunity enhanced by AI, driven by connection.</h3>
+    </div>
+  </div>
+
+  <!-- Section droite (formulaire) -->
+  <div class="signin-right">
+    <!-- Navigation -->
+    <a routerLink="/" class="back-home">← Return Home</a>
+    
+    <!-- Sélecteur de langue -->
+    <div class="language-selector">
+      <button class="language-btn" (click)="toggleLanguageDropdown()" [class.active]="showLanguageDropdown">
+        {{ currentLanguage }}
+        <span class="arrow">▼</span>
+      </button>
+      <div class="language-dropdown" [class.visible]="showLanguageDropdown">
+        <button (click)="changeLanguage('English')">
+          English <span *ngIf="currentLanguage === 'English'">✓</span>
+        </button>
+        <button (click)="changeLanguage('Français')">
+          Français <span *ngIf="currentLanguage === 'Français'">✓</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <div class="signin-form">
+      <h2>WELCOME BACK EXCLUSIVE MEMBER</h2>
+      <p class="login-prompt">LOG IN TO CONTINUE</p>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input type="email" formControlName="email" placeholder="example@email.com" class="input">
+        <input type="password" formControlName="password" placeholder="*********" class="input">
+        
+        <button class="signin-button" routerLink="/jobseeker-jobsearch" type="submit" [disabled]="loginForm.invalid">
+          Proceed to my Account →
+        </button>
+      </form>
+      
+      <div class="signin-links">
+        <a routerLink="/fpswd" class="forgot">Forgot Password?</a>
+        <p routerLink="/register" class="signup">Not a member yet? <a routerLink="/register">JOIN NOW</a></p>
+      </div>
+    </div>
+  </div>
+</div>

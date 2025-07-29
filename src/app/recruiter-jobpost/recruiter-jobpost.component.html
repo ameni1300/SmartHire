@@ -1,0 +1,146 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a (click)="goToDashboard()">DASHBOARD</a>
+        <a >POST JOB</a>
+        
+    </nav>
+   <div class="profile-circle" (click)="toggleProfileMenu()">
+    <img src="../../assets/imgprof.png" alt="Profile" />
+  </div>
+
+    <div class="profile-menu" *ngIf="showProfileMenu">
+  <ul>
+    <li (click)="goToProfile()">My Profile</li>
+    <li (click)="goToSettings()">Settings</li>
+   <li (click)="logout()">
+    <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+  </li>
+
+  </ul>
+</div>
+</header>
+
+<div class="post-job-container">
+<h2 class="welcome-message">
+  {{ jobService.getJobToEdit() ? 'Editing Job...' : 'Post a New Job' }}
+</h2>
+  <p class="sub-text">Find the best talent for your company</p>
+
+  <form [formGroup]="postJobForm" (ngSubmit)="onSubmit()" class="post-job-form">
+
+  <!-- Title + Type -->
+  <div class="form-row">
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('title')?.invalid}">
+      <label>Job Title <span class="required">*</span></label>
+      <input formControlName="title" type="text" />
+    </div>
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('type')?.invalid}">
+      <label>Employment Type <span class="required">*</span></label>
+      <select formControlName="category">
+        <option value="">Select...</option>
+        <option>Full-Time</option>
+        <option>Part-Time</option>
+        <option>Internship</option>
+        <option>Freelance</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Department + Mode -->
+  <div class="form-row">
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('department')?.invalid}">
+      <label>Department <span class="required">*</span></label>
+      <input formControlName="department" type="text" />
+    </div>
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('mode')?.invalid}">
+      <label>Work Mode <span class="required">*</span></label>
+      <select formControlName="mode">
+        <option value="">Select...</option>
+        <option>Remote</option>
+        <option>Onsite</option>
+        <option>Hybrid</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Localisation -->
+  <div class="form-row">
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('country')?.invalid}">
+      <label>Country <span class="required">*</span></label>
+      <select formControlName="country">
+        <option value="">Select Country</option>
+        <option>Tunisia</option>
+        <option>France</option>
+      </select>
+    </div>
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('city')?.invalid}">
+      <label>City <span class="required">*</span></label>
+      <select formControlName="city">
+        <option value="">Select City</option>
+        <option>Tunis</option>
+        <option>Paris</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Salary (non required) -->
+  <div class="form-row">
+    <div class="form-field">
+      <label>Min Salary Per Year</label>
+      <input formControlName="salaryMin" type="number" />
+    </div>
+    <div class="form-field">
+      <label>Max Salary Per Year</label>
+      <input formControlName="salaryMax" type="number" />
+    </div>
+  </div>
+
+  <!-- Openings + Exp + Deadline -->
+<div class="form-row">
+  <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('openings')?.invalid}">
+    <label>Number of Openings <span class="required">*</span></label>
+    <input formControlName="openings" type="number" min="1" />
+  </div>
+  <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('experience')?.invalid}">
+    <label>Experience <span class="required">*</span></label>
+    <input formControlName="experience" type="text" />
+  </div>
+  <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('deadline')?.invalid}">
+    <label>Application Deadline <span class="required">*</span></label>
+    <input formControlName="deadline" type="date" />
+  </div>
+</div>
+
+
+  <!-- Description -->
+  <div class="form-row">
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('description')?.invalid}">
+      <label>Job Description <span class="required">*</span></label>
+      <textarea formControlName="description" rows="4"></textarea>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="form-row">
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('skills')?.invalid}">
+      <label>Skills & Qualifications <span class="required">*</span></label>
+      <textarea formControlName="skills" rows="3"></textarea>
+    </div>
+  </div>
+
+  <!-- Why Join -->
+  <div class="form-row">
+    <div class="form-field" [ngClass]="{'error': submitted && postJobForm.get('joinus')?.invalid}">
+      <label>Why Join Us? <span class="required">*</span></label>
+      <textarea formControlName="joinus" rows="3"></textarea>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="postJobForm.invalid" class="post-btn">Post Job</button>
+</form>
+
+</div>

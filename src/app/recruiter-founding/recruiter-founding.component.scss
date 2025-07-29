@@ -1,0 +1,302 @@
+.container {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f7f7f7;
+  height: 100%;
+}
+
+.logo-group {
+
+     display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+
+
+      
+      .logo {
+        width: 70px;
+         margin-right: 8px;
+      }
+      
+      .brand {
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
+
+
+
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  margin-left: 90px;
+  padding: 0 1rem;
+  
+
+  .step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    color: #666;
+    transition: color 0.3s ease;
+
+    img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    span {
+      font-size: 20px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    &.active {
+      color: #28a745;
+
+      img {
+        filter: none;
+      }
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: #28a745;
+
+      img {
+        filter: none;
+      }
+    }
+  }
+}
+
+
+.form {
+   margin: 2rem auto;
+  max-width: 950px;
+  padding: 3rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+.form-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+
+  &.vision {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input,
+    select,
+    textarea {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    &.full-width {
+      width: 100%;
+    }
+  }
+
+.website-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  border-radius: 5px;
+  background-color: #fff;
+
+  img {
+    width: 20px;
+    margin-right: 10px;
+    opacity: 0.7;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    padding: 0;
+    background: transparent;
+  }
+
+  input::placeholder {
+    color: #999;
+  }
+}
+
+
+}
+
+
+.form-actions.dual {
+  display: flex;
+  justify-content: flex-start; // <-- aligne à gauche
+  gap: 1rem;
+  margin-top: 2rem;
+
+  button {
+    min-width: 140px;
+    font-size: 15px;
+  }
+
+  .btn-black {
+    background-color: #000;
+    color: #fff;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+
+  button:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed;
+  }
+}
+
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #333;
+  outline: none;
+}
+
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+ 
+  label {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+}
+
+.full-width {
+  width: 100%;
+  
+}
+
+.next-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next-btn:hover {
+  background-color: #218838;
+}
+
+.previous-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.previous-btn:hover {
+  background-color: #222;
+}
+}
+.error-message {
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+select.ng-invalid.ng-touched {
+  border-color: #f44336;
+}
+
+button:disabled {
+  background-color: #cccccc !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.debug-info {
+  margin-top: 20px;
+  font-family: monospace;
+  color: #666;
+  font-size: 12px;
+}
+.error-message {
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+input.ng-invalid.ng-touched, 
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+
+button:disabled {
+  background-color: #cccccc !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.debug-info {
+  margin-top: 20px;
+  font-family: monospace;
+  color: #666;
+  font-size: 12px;
+}
+.required-star {
+  color: red;
+  margin-left: 3px;
+}

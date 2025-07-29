@@ -1,0 +1,123 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a (click)="goToDashboard()">DASHBOARD</a>
+        <a (click)="goToPost()">POST JOB</a>
+    </nav>
+    <div class="profile-circle" (click)="toggleProfileMenu()">
+        <img src="../../assets/imgprof.png" alt="Profile" />
+    </div>
+
+    <div class="profile-menu" *ngIf="showProfileMenu">
+        <ul>
+            <li (click)="goToProfile()">
+                <i class="fas fa-user"></i> My Profile
+            </li>
+            <li (click)="goToSettings()">
+                <i class="fas fa-cog"></i> Settings
+            </li>
+            <li (click)="logout()">
+                <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+            </li>
+        </ul>
+    </div>
+</header>
+
+<div class="application-page">
+    <h2>Applications for this Job</h2>
+    <p class="total-count">{{ applications.length }} candidate(s) applied</p>
+
+    <div class="card-grid">
+        <div class="app-card" *ngFor="let app of applications">
+            <div class="card-header">
+                <img [src]="app.photo" alt="{{ app.name }}" class="applicant-photo" 
+                     onerror="this.src='../../assets/default-profile.png'" />
+                <div>
+                    <h4>{{ app.name }}</h4>
+                    <p class="role">{{ app.role }}</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <p><strong>{{ app.experience }} Experience</strong></p>
+                <p>Education: {{ app.education }}</p>
+                <p>Applied: {{ app.date }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="see-all" (click)="selectedApplicant = app; $event.preventDefault()">
+                    <i class="fas fa-eye"></i> View Details
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Applicant Details Modal -->
+<div class="modal-backdrop" *ngIf="selectedApplicant">
+    <div class="modal-wrapper">
+        <button class="close-btn" (click)="selectedApplicant = null">×</button>
+
+        <div class="modal-grid">
+            <!-- Left Column -->
+            <div class="left">
+                <div class="header">
+                    <img [src]="selectedApplicant.photo" class="photo" 
+                         onerror="this.src='../../assets/default-profile.png'" />
+                    <div>
+                        <h3>{{ selectedApplicant.name }}</h3>
+                        <p>{{ selectedApplicant.title }}</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h4>BIOGRAPHY</h4>
+                    <p>{{ selectedApplicant.bio || 'No biography provided' }}</p>
+                </div>
+
+                <div class="section">
+                    <h4>COVER LETTER</h4>
+                    <p>{{ selectedApplicant.coverLetter || 'No cover letter provided' }}</p>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right">
+                <div class="section">
+                    <h4>PERSONAL INFORMATION</h4>
+                    <div class="info">
+                        <div><strong>DATE OF BIRTH</strong><span>{{ selectedApplicant.birth || 'Not specified' }}</span></div>
+                        <div><strong>NATIONALITY</strong><span>{{ selectedApplicant.nationality || 'Not specified' }}</span></div>
+                        <div><strong>MARITAL STATUS</strong><span>{{ selectedApplicant.maritalStatus || 'Not specified' }}</span></div>
+                        <div><strong>GENDER</strong><span>{{ selectedApplicant.gender || 'Not specified' }}</span></div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h4>PROFESSIONAL DETAILS</h4>
+                    <div class="info">
+                        <div><strong>EXPERIENCE</strong><span>{{ selectedApplicant.experience || 'Not specified' }}</span></div>
+                        <div><strong>EDUCATION</strong><span>{{ selectedApplicant.education || 'Not specified' }}</span></div>
+                    </div>
+                </div>
+
+                <div class="resume-download">
+                    <p>DOWNLOAD RESUME</p>
+                    <a [href]="selectedApplicant.resumeUrl" download>
+                        <i class="fas fa-download"></i> {{ selectedApplicant.resumeFileName || 'resume.pdf' }}
+                    </a>
+                </div>
+
+                <div class="section">
+                    <h4>CONTACT INFORMATION</h4>
+                    <div class="contact">
+                        <div><strong>LOCATION</strong><p>{{ selectedApplicant.address || 'Not specified' }}</p></div>
+                        <div><strong>PHONE</strong><p>{{ selectedApplicant.phone || 'Not specified' }}</p></div>
+                        <div><strong>EMAIL</strong><p>{{ selectedApplicant.email || 'Not specified' }}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

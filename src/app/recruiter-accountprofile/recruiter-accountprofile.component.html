@@ -1,0 +1,79 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a (click)="goToDashboard()">DASHBOARD</a>
+        <a (click)="goToPost()">POST JOB</a>
+        
+    </nav>
+   <div class="profile-circle" (click)="toggleProfileMenu()">
+    <img src="../../assets/imgprof.png" alt="Profile" />
+  </div>
+
+    <div class="profile-menu" *ngIf="showProfileMenu">
+  <ul>
+    <li >My Profile</li>
+    <li (click)="goToSettings()">Settings</li>
+   <li (click)="logout()">
+    <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+  </li>
+
+  </ul>
+</div>
+</header>
+<div class="profile-wrapper">
+  <div class="header">
+    <img [src]="recruiter.photoUrl" alt="Profile" class="avatar" />
+    <div>
+      <h2>{{ recruiter.name }}</h2>
+      <p class="email">{{ recruiter.email }}</p>
+    </div>
+  </div>
+
+  <div class="section card">
+    <h3>Company Description</h3>
+    <p>{{ recruiter.bio }}</p>
+    <div class="website">
+      <i class="fas fa-globe"></i>
+      <a [href]="recruiter.website" target="_blank">{{ recruiter.companyName }}</a>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="section card">
+      <h3>Company Details</h3>
+      <ul class="info-list">
+        <li *ngFor="let item of recruiterDetails">
+          <i class="{{ item.icon }}"></i>
+          <span>{{ item.label }}: <strong>{{ item.value }}</strong></span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h3>Additional Info</h3>
+      <ul class="info-list">
+        <li *ngFor="let detail of additionalDetails">
+          <i class="{{ detail.icon }}"></i>
+          <span>{{ detail.label }}: <strong>{{ detail.value }}</strong></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section card">
+    <h3>Social Links</h3>
+    <div class="social-buttons">
+      <a *ngFor="let social of socialLinks"
+         [href]="social.url"
+         target="_blank"
+         [class.disabled]="social.url === '#'"
+         class="social-link">
+        <i class="{{ social.icon }}"></i> {{ social.name }}
+      </a>
+    </div>
+  </div>
+</div>
+

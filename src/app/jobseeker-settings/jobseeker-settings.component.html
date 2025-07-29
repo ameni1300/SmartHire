@@ -1,0 +1,205 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a (click)="goToSearch()">SEARCH JOB</a>
+        <a (click)="goToDashboard()">DASHBOARD</a>
+        <a>ChatBot</a>
+    </nav>
+    <div class="profile-circle" (click)="toggleProfileMenu()">
+        <img src="../../assets/imgprof.png" alt="Profile" />
+    </div>
+
+    <div class="profile-menu" *ngIf="showProfileMenu">
+        <ul>
+            <li (click)="goToProfile()">My Profile</li>
+            <li >Settings</li>
+            <li (click)="logout()">
+                <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+            </li>
+        </ul>
+    </div>
+</header>
+
+<div class="profile-wrapper" *ngIf="!isLoading">
+  <div class="header">
+   <div class="avatar-wrapper">
+  <img [src]="jobseeker.photoUrl" alt="Profile" class="avatar" (click)="togglePhotoPopup()" />
+  
+  <div class="photo-popup" *ngIf="showPhotoPopup">
+  <button (click)="openPhotoViewer()">View profile picture</button>
+  <label class="file-upload-btn">
+    Choose a photo
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  </label>
+  <button (click)="uploadProfilePicture()" [disabled]="!selectedFile">
+    Download
+  </button>
+</div>
+</div>
+
+    <div>
+      <h2>Account Settings</h2>
+      <p class="email">{{ jobseeker.email }}</p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Section 1: Personal Info -->
+    <div class="section card">
+      <h3>Personal Information</h3>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" [(ngModel)]="jobseeker.nom" />
+      </div>
+      
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="jobseeker.email" />
+      </div>
+      
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" [(ngModel)]="jobseeker.location" />
+      </div>
+      
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" [(ngModel)]="jobseeker.phone" />
+      </div>
+    </div>
+
+    <!-- Section 2: Professional Info -->
+    <div class="section card">
+      <h3>Professional Information</h3>
+      <div class="form-group">
+        <label>Biography</label>
+        <textarea [(ngModel)]="jobseeker.bio"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Personal Message</label>
+        <textarea [(ngModel)]="jobseeker.personalMessage"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Website/Portfolio</label>
+        <input type="url" [(ngModel)]="jobseeker.website" />
+      </div>
+
+      <div class="form-group">
+        <label>Headline</label>
+        <input type="text" [(ngModel)]="jobseeker.headline" />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 3: Social Links -->
+  <div class="section card">
+    <h3>Social Links</h3>
+    <div class="grid-2">
+      <div class="form-group">
+        <label><i class="fab fa-linkedin"></i> LinkedIn</label>
+        <input type="url" [(ngModel)]="jobseeker.linkedin" />
+      </div>
+      
+      <div class="form-group">
+        <label><i class="fab fa-github"></i> GitHub</label>
+        <input type="url" [(ngModel)]="jobseeker.github" />
+      </div>
+      
+      <div class="form-group">
+        <label><i class="fab fa-twitter"></i> Twitter</label>
+        <input type="url" [(ngModel)]="jobseeker.twitter" />
+      </div>
+      
+      <div class="form-group">
+        <label><i class="fab fa-facebook"></i> Facebook</label>
+        <input type="url" [(ngModel)]="jobseeker.facebook" />
+      </div>
+    </div>
+  </div>
+<!-- Section 5: CV Management -->
+<div class="section card">
+  <h3>Manage Your CV</h3>
+  
+  <!-- Upload New CV -->
+  <div class="form-group">
+    <label>Upload New CV</label>
+    <input type="file" (change)="onCVSelected($event)" accept=".pdf,.doc,.docx" />
+  </div>
+
+  <!-- List of Resumes -->
+<div class="resume-list" *ngIf="resumes.length > 0">
+    <h4>Your Resumes</h4>
+    <ul>
+      <li *ngFor="let resume of resumes" 
+          [class.selected]="selectedResumeId === resume.id"
+          (click)="selectResume(resume)">
+        <span class="resume-name">{{resume.fileName}}</span>
+        <div class="resume-actions">
+          <button class="btn-download" (click)="downloadCV(); $event.stopPropagation()">
+            Download
+          </button>
+        </div>
+      </li>
+    </ul>
+    
+    <div class="actions">
+      <button class="btn-delete" 
+              (click)="deleteCV()" 
+              [disabled]="!selectedResumeId">
+        Delete Selected CV
+      </button>
+    </div>
+  </div>
+
+  <!-- No Resumes Message -->
+  <div *ngIf="resumes?.length === 0" class="no-resumes">
+    <p>You haven't uploaded any resumes yet.</p>
+  </div>
+</div>
+
+  <!-- Section 4: Password Change -->
+  <!-- Ajoutez cette section dans votre template -->
+<form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+  <h3>Change password</h3>
+
+  <div class="form-group">
+    <label>Current password</label>
+    <input type="password" formControlName="currentPassword" />
+  </div>
+
+  <div class="form-group">
+    <label>New Password</label>
+    <input type="password" formControlName="newPassword" />
+    <small *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
+      Minimum 8 caractères
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label>Confirm new password</label>
+    <input type="password" formControlName="confirmPassword" />
+    <small *ngIf="passwordForm.hasError('mismatch') && passwordForm.get('confirmPassword')?.touched">
+      Les mots de passe ne correspondent pas
+    </small>
+  </div>
+
+<button type="submit" 
+        [disabled]="passwordForm.invalid" 
+        [class.loading]="isLoading">
+  {{ isLoading ? '' : 'Update' }}
+</button>
+
+</form>
+
+  <!-- Action Buttons -->
+  <div class="section card actions">
+    <button class="save-btn" (click)="saveChanges()">Save Changes</button>
+    <button class="delete-btn" (click)="deleteAccount()">Delete Account</button>
+  </div>
+</div>

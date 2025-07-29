@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="logo-group">
+    <img src="../../assets/blacklogo.png" alt="SmartHire Logo" class="logo" />
+    <span class="brand">SmartHire</span>
+  </div>
+
+  <div class="step-indicator">
+    <div class="step">
+      <img src="../../assets/jobseeker/personal.png" alt="Personal Icon" />
+      <span>Personal</span>
+    </div>
+    <div class="step active">
+      <img src="../../assets/jobseeker/profile.png" alt="Profile Icon" />
+      <span>Profile</span>
+    </div>
+    <div class="step">
+      <img src="../../assets/jobseeker/web.png" alt="Social Icon" />
+      <span>Social Links</span>
+    </div>
+    <div class="step">
+      <img src="../../assets/jobseeker/settings.png" alt="Settings Icon" />
+      <span>Account Setting</span>
+    </div>
+  </div>
+
+  <form [formGroup]="profileForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <h3>Basic Information</h3>
+      <div class="form-row">
+        <!-- Profile Picture -->
+        
+
+        <!-- Right side input fields -->
+        <div class="form-fields-right">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Title/headline <span class="required-star">*</span></label>
+              <input type="text" placeholder="Title/headline" formControlName="title" />
+              <div class="error-message" *ngIf="profileForm.get('title')?.touched && profileForm.get('title')?.invalid">
+                Title is required and must be less than 100 characters.
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Tags <span class="required-star">*</span></label>
+              <input
+                type="text"
+                placeholder="Add at least 5 tags"
+                formControlName="tagInput"
+                (keydown.enter)="addTag($event)"
+              />
+              <div class="tags-container">
+                <span class="tag" *ngFor="let tag of tags; let i = index">
+                  {{ tag }}
+                  <button type="button" (click)="removeTag(i)">×</button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label>Personal message</label>
+              <textarea placeholder="Leave a little note about your availability, your interest, ..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Résumés === -->
+    <div class="cv-section">
+      <h3>Your Cv/Resume</h3>
+      <div class="cv-list">
+        <div class="cv-item" *ngFor="let file of resumes; let i = index">
+          <strong>{{ file.name }}</strong><br />
+          <span>{{ file.size }}</span>
+          <button type="button" (click)="removeResume(i)">x</button>
+        </div>
+        <div class="cv-item add" (click)="cvInput.click()">
+          <span>+</span> Add CV/Resume<br />
+          <small>Browse file or drop here. only PDF</small>
+        </div>
+        <input type="file" #cvInput (change)="onCvSelected($event)" hidden accept="application/pdf" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button routerLink="/jobseeker-personal" type="button" class="previous-btn">Previous</button>
+      <button
+        class="next-btn"
+        type="submit"
+        [disabled]="profileForm.invalid || tags.length < 5"
+      >
+        Save & Next →
+      </button>
+    </div>
+  </form>
+</div>

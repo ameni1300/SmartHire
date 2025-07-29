@@ -1,0 +1,323 @@
+.navbar {
+  background-color: #309689;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    .brand-logo {
+      height: 40px;
+    }
+
+    .brand-name {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 25px;
+
+    a {
+      color: white;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.95rem;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .profile-circle img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: white;
+    }
+  }
+
+  .profile-menu {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: white;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 200px;
+    z-index: 100;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      padding: 12px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+
+      .logout-icon {
+        color: #e74c3c;
+      }
+    }
+
+    li + li {
+      border-top: 1px solid #eee;
+    }
+  }
+}
+
+.settings-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+
+  .settings-section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+    h3 {
+      color: #3498db;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+
+      &:focus {
+        border-color: #3498db;
+        outline: none;
+      }
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+  }
+
+  .settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+
+    button {
+      padding: 12px 25px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        background: #95a5a6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+.password-form {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #e0e0e0;
+
+  h3 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  .form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #34495e;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 40px 12px 14px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+
+      &:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+      }
+
+      &.ng-invalid.ng-touched {
+        border-color: #e74c3c;
+      }
+    }
+
+    small {
+      color: #e74c3c;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    .toggle-visibility {
+      position: absolute;
+      right: 12px;
+      top: 39px;
+      cursor: pointer;
+      color: #aaa;
+      font-size: 1rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #555;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover:not([disabled]) {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+  .danger-zone {
+    border: 2px solid #e74c3c;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 40px;
+
+    h3 {
+      color: #e74c3c;
+      margin-top: 0;
+    }
+
+    p {
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .danger {
+      background: #e74c3c;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        background: #c0392b;
+      }
+    }
+  }
+
+  .loading-spinner {
+    text-align: center;
+    padding: 50px;
+    color: #3498db;
+    font-size: 18px;
+
+    .fa-spinner {
+      margin-right: 10px;
+    }
+  }
+}

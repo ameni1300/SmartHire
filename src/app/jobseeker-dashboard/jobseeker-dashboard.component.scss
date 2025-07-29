@@ -1,0 +1,363 @@
+.navbar {
+  background-color: #309689;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    .brand-logo {
+      height: 40px;
+    }
+
+    .brand-name {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 25px;
+
+    a {
+      color: white;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.95rem;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .profile-circle img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: white;
+    }
+  }
+
+  .profile-menu {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: white;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 200px;
+    z-index: 100;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      padding: 12px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+
+      .logout-icon {
+        color: #e74c3c;
+      }
+    }
+
+    li + li {
+      border-top: 1px solid #eee;
+    }
+  }
+}
+
+
+
+.dashboard-container {
+  padding: 30px;
+  height: 100%;
+  background-color: #f5f6fa;
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .job-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #e8f0fe;
+    }
+
+    .job-info {
+      display: flex;
+      align-items: center;
+
+      .job-logo {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      .job-title {
+        font-weight: bold;
+      }
+
+      .job-location, .job-salary {
+        font-size: 0.9em;
+        color: #777;
+      }
+    }
+
+    .tag {
+      background-color: #e0f7fa;
+      color: #00796b;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 0.9em;
+    }
+
+    .active-status {
+      color: green;
+      font-weight: bold;
+    }
+
+    .expired-status {
+      color: red;
+      font-weight: bold;
+    }
+
+    .view-btn {
+      padding: 6px 12px;
+      background-color: #e0e0e0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}
+/* Backdrop: dark translucent overlay */
+.modal-backdrop {
+  position: fixed;
+  inset: 0; /* shorthand for top/right/bottom/left = 0 */
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* Modal container */
+.application-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #121212; /* very dark grey/black */
+  color: #eee;
+  padding: 2rem 2.5rem;
+  width: 500px;
+  max-width: 90vw;
+  border-radius: 15px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    0 0 1rem #3bc61faa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 1001;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+}
+
+.application-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  color: #222;
+  padding: 2rem;
+  width: 550px;
+  max-width: 95vw;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #555;
+  cursor: pointer;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.modal-close-btn:hover {
+  color: #28a745;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.company-info h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #28a745;
+  margin: 0;
+}
+
+.company-info h3 {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
+}
+
+.meta-box {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.meta-item {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 0.5rem;
+  flex: 1;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.2rem;
+}
+
+.value {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.modal-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.modal-body h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #28a745;
+}
+
+.modal-body p {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.contact-info p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.contact-info a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.expire-date {
+  text-align: right;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #dc3545;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* Scrollbar styling */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .application-modal {
+    width: 95vw;
+    padding: 1.2rem;
+  }
+}

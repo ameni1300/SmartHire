@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="logo-group">
+    <img src="../../assets/blacklogo.png" alt="SmartHire Logo" class="logo" />
+    <span class="brand">SmartHire</span>
+  </div>
+
+  <div class="step-indicator">
+  <div class="step ">
+    <img src="../../assets/jobseeker/personal.png" alt="Personal Icon" />
+    <span>Personal</span>
+  </div>
+  <div class="step ">
+    <img src="../../assets/jobseeker/profile.png" alt="Profile Icon" />
+    <span>Profile</span>
+  </div>
+  <div class="step">
+    <img src="../../assets/jobseeker/web.png" alt="Social Icon" />
+    <span>Social Links</span>
+  </div>
+  <div class="step active">
+    <img src="../../assets/jobseeker/settings.png" alt="Settings Icon" />
+    <span>Account Setting</span>
+  </div>
+</div>
+
+<form class="form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="form-section">
+    <h2>Contact Info</h2>
+
+    <div class="contact-fields">
+      <div class="contact-group">
+        <label><strong>Location</strong> <span class="required-star">*</span></label>
+        <input type="text" formControlName="location" placeholder="Location" />
+        <div *ngIf="contactForm.get('location')?.invalid && contactForm.get('location')?.touched" class="error-message">
+          Location is required.
+        </div>
+      </div>
+
+      <div class="contact-group">
+        <label><strong>Phone</strong> <span class="required-star">*</span></label>
+        <input type="tel" formControlName="phone" placeholder="Phone number" />
+        <div *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched" class="error-message">
+          Phone must be 10 to 15 digits.
+        </div>
+      </div>
+
+      <div class="contact-group">
+        <label><strong>Company Email</strong><span class="required-star">*</span></label>
+        <input type="email" formControlName="companyEmail" placeholder="Email address" />
+        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
+          Enter a valid email address.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button routerLink="/recruiter-founding" type="button" class="previous-btn">Previous</button>
+    <button type="submit" class="next-btn" [disabled]="!contactForm.valid">Finish →</button>
+  </div>
+</form>

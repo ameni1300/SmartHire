@@ -1,0 +1,124 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a (click)="goToSearch()">SEARCH JOB</a>
+        <a (click)="goToDashboard()">DASHBOARD</a>
+        <a>ChatBot</a>
+    </nav>
+    <div class="profile-circle" (click)="toggleProfileMenu()">
+        <img src="../../assets/imgprof.png"  alt="Profile" />
+    </div>
+
+    <div class="profile-menu" *ngIf="showProfileMenu">
+        <ul>
+            <li (click)="goToProfile()">My Profile</li>
+            <li (click)="goToSettings()">Settings</li>
+            <li (click)="logout()">
+                <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+            </li>
+        </ul>
+    </div>
+</header>
+
+<div class="profile-wrapper">
+  <div class="header">
+    <img [src]="jobseeker.photoUrl" alt="Profile" class="avatar" />
+    <div>
+      <h2>{{ jobseeker.nom }}</h2>
+      <p>{{ jobseeker.headline }}</p>
+      <p class="email">{{ jobseeker.email }}</p>
+    </div>
+  </div>
+
+  <div class="section card">
+    <h3>Professional Summary</h3>
+    <p>{{ jobseeker.bio || 'No biography provided' }}</p>
+    
+    <div *ngIf="jobseeker.personalMessage" class="personal-message">
+      <h4>Personal Message</h4>
+      <p>{{ jobseeker.personalMessage }}</p>
+    </div>
+    
+    <div class="website" *ngIf="jobseeker.website">
+      <i class="fas fa-globe"></i>
+      <a [href]="jobseeker.website" target="_blank">{{ jobseeker.website }}</a>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="section card">
+      <h3>Personal Details</h3>
+      <ul class="info-list">
+        <li *ngFor="let item of personalDetails">
+          <i class="{{ item.icon }}"></i>
+          <span>{{ item.label }}: <strong>{{ item.value }}</strong></span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h3>Professional Details</h3>
+      <ul class="info-list">
+        <li *ngFor="let detail of professionalDetails">
+          <i class="{{ detail.icon }}"></i>
+          <span>{{ detail.label }}: <strong>{{ detail.value }}</strong></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section card" >
+    <h3>Skills</h3>
+    <div class="skills-container">
+      <span class="skill-tag" *ngFor="let skill of jobseeker.skills">{{ skill }}</span>
+    </div>
+  </div>
+
+<div class="section card" *ngIf="resumes.length > 0 || loadingResumes">
+  <h3>Mes CVs</h3>
+  
+  <!-- Indicateur de chargement -->
+  <div *ngIf="loadingResumes" class="loading-resumes">
+    <p>Chargement des CVs...</p>
+  </div>
+
+  <!-- Liste des CVs -->
+  <div *ngIf="!loadingResumes" class="resumes-list">
+    <div class="resume-item" *ngFor="let resume of resumes">
+      <div class="resume-info">
+        <i class="fas fa-file-pdf"></i>
+        <div>
+          <p class="resume-name">{{ resume.name || 'Mon CV' }}</p>
+          <p class="resume-date">
+            Ajouté le {{ resume.uploadDate | date:'dd/MM/yyyy' }}
+          </p>
+        </div>
+      </div>
+      <button (click)="downloadResume(resume.id)" class="download-btn">
+        <i class="fas fa-download"></i> Télécharger
+      </button>
+    </div>
+  </div>
+
+  <!-- Message si aucun CV -->
+  <div *ngIf="resumes.length === 0 && !loadingResumes" class="no-resumes">
+    <p>Aucun CV enregistré</p>
+  </div>
+</div>
+
+  <div class="section card">
+    <h3>Social Links</h3>
+    <div class="social-buttons">
+      <a *ngFor="let social of socialLinks"
+         [href]="social.url"
+         target="_blank"
+         [class.disabled]="social.url === '#'"
+         class="social-link">
+        <i class="{{ social.icon }}"></i> {{ social.name }}
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a (click)="goToDashboard()">DASHBOARD</a>
+        <a (click)="goToPost()">POST JOB</a>
+        
+    </nav>
+   <div class="profile-circle" (click)="toggleProfileMenu()">
+    <img src="../../assets/imgprof.png" alt="Profile" />
+  </div>
+
+    <div class="profile-menu" *ngIf="showProfileMenu">
+  <ul>
+    <li >My Profile</li>
+    <li (click)="goToSettings()">Settings</li>
+   <li (click)="logout()">
+    <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+  </li>
+
+  </ul>
+</div>
+</header>
+
+<div class="settings-container">
+
+  <h2>Recruiter Account Settings</h2>
+
+  <!-- 🖼️ Logo & Infos -->
+  <section class="settings-section">
+    <h3>Company Info</h3>
+    <label>Company Logo</label>
+    <input type="file" (change)="onLogoSelected($event)" />
+
+    <label>Company Name</label>
+    <input type="text" [(ngModel)]="companyName" />
+
+    <label>Company Description</label>
+    <textarea [(ngModel)]="companyDescription"></textarea>
+  </section>
+
+  <!-- 🏗️ Fondations -->
+  <section class="settings-section">
+    <h3>Founding Info</h3>
+    <label>Organization Type</label>
+    <select [(ngModel)]="organizationType">
+      <option *ngFor="let type of organizationTypes" [value]="type">{{ type }}</option>
+    </select>
+
+    <label>Industry Types</label>
+    <select [(ngModel)]="industryType">
+      <option *ngFor="let industry of industryTypes" [value]="industry">{{ industry }}</option>
+    </select>
+
+    <label>Year of Establishment</label>
+    <input type="date" [(ngModel)]="establishmentYear" />
+
+    <label>Company Website</label>
+    <input type="url" [(ngModel)]="companyWebsite" />
+
+    <label>Company Vision</label>
+    <textarea [(ngModel)]="companyVision"></textarea>
+  </section>
+
+  <!-- 🌐 Liens sociaux -->
+  <section class="settings-section">
+    <h3>Social Media</h3>
+    <input type="text" [(ngModel)]="facebook" placeholder="Facebook URL" />
+    <input type="text" [(ngModel)]="twitter" placeholder="Twitter URL" />
+    <input type="text" [(ngModel)]="linkedin" placeholder="LinkedIn URL" />
+  </section>
+
+  <!-- 📍 Contact -->
+  <section class="settings-section">
+    <h3>Contact Info</h3>
+    <input type="text" [(ngModel)]="location" placeholder="Company Location" />
+    <input type="tel" [(ngModel)]="phone" placeholder="Phone Number" />
+    <input type="email" [(ngModel)]="email" placeholder="Email Address" />
+  </section>
+
+  <!-- 🔐 Login -->
+  <section class="settings-section">
+    <h3>Security</h3>
+    <label>Current Password</label>
+    <input type="password" [(ngModel)]="currentPassword" />
+
+    <label>New Password</label>
+    <input type="password" [(ngModel)]="newPassword" />
+
+    <label>Confirm New Password</label>
+    <input type="password" [(ngModel)]="confirmPassword" />
+  </section>
+
+  <!-- ✅ Actions -->
+  <div class="settings-actions">
+    <button (click)="saveChanges()">Save Changes</button>
+    <button class="danger" (click)="deleteAccount()">Delete Account</button>
+  </div>
+</div>

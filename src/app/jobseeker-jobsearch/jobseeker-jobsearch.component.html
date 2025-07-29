@@ -1,0 +1,299 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a>SEARCH JOB</a>
+        <a (click)="goToDashboard()">DASHBOARD</a>
+        <a>ChatBot</a>
+    </nav>
+    <div class="profile-circle" (click)="toggleProfileMenu()">
+        <img src="../../assets/imgprof.png" alt="Profile" />
+    </div>
+    <div class="profile-menu" *ngIf="showProfileMenu">
+        <ul>
+            <li (click)="goToProfile()">My Profile</li>
+            <li (click)="goToSettings()">Settings</li>
+            <li (click)="logout()">
+                <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+            </li>
+        </ul>
+    </div>
+</header>
+
+<!-- BODY -->
+<div class="main-content">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Filtres -->
+        <div class="filter-section">
+            <label for="searchTitle">Search by Job Title or Company</label>
+            <input type="text" id="searchTitle" placeholder="Job title or company" 
+                   [(ngModel)]="searchTitle" (input)="applyFilters()" />
+        </div>
+
+        <div class="filter-section">
+            <label for="location">Location</label>
+            <select id="location" [(ngModel)]="selectedCountry" (change)="applyFilters()">
+                <option value="">Choose country</option>
+                <option *ngFor="let country of countries" [value]="country">
+                    {{ country }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Catégories -->
+        <div class="filter-section">
+            <label>Category</label>
+            <div class="checkbox-group">
+                <label *ngFor="let cat of visibleCategories">
+                    <input type="checkbox" [value]="cat" 
+                            (change)="onCategoryChange($event)" 
+                            [checked]="selectedCategories.includes(cat)" /> 
+                    {{ cat }}
+                </label>
+                <button class="show-more-btn" (click)="toggleCategories()">
+                    {{ showAllCategories ? 'Show Less' : 'Show More' }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Type de job -->
+        <div class="filter-section">
+            <label>Job Type</label>
+            <div class="checkbox-group">
+                <label *ngFor="let type of ['Full-Time', 'Part-Time', 'Freelance', 'Internship', 'Contract']">
+                    <input type="checkbox" [value]="type" 
+                            (change)="onJobTypeChange($event)" 
+                            [checked]="selectedJobTypes.includes(type)" /> 
+                    {{ type }}
+                </label>
+            </div>
+        </div>
+
+        <!-- Salaire -->
+        <div class="filter-section">
+            <label>Salary Range (per year)</label>
+            <div class="salary-range">
+                <div class="range-labels">
+                    <span>Min: ${{minSalary}}K</span>
+                    <span>Max: ${{maxSalary}}K</span>
+                </div>
+                <input type="range" min="0" max="200" step="5" 
+                    [(ngModel)]="minSalary" (input)="applyFilters()" />
+                <input type="range" min="0" max="200" step="5" 
+                    [(ngModel)]="maxSalary" (input)="applyFilters()" />
+            </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="filter-section">
+            <label>Popular Tags</label>
+            <div class="tag-list">
+                <span *ngFor="let tag of tags" class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
+                    {{ tag }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Promo -->
+        <div class="promo-card">
+            <img src="../../assets/assitant-rh.jpg" alt="We Are Hiring" />
+            <div class="promo-text">
+                <h3>WE ARE HIRING</h3>
+                <p>Apply Today!</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Job Listings -->
+    <section class="job-listings">
+        <h2>Welcome <b>{{ nom }}</b></h2>
+        
+        <div *ngIf="filteredJobs.length === 0" class="no-results">
+            <p>No jobs found matching your criteria. Try adjusting your filters.</p>
+        </div>
+
+        <div class="job-row" *ngFor="let job of pagedJobs">
+            <div class="job-left">
+                <img [src]="job.logo" alt="Company Logo" class="job-logo" />
+
+                <div class="job-details">
+                    <h3>{{ job.title }}</h3>
+                    <p class="company-name">{{ job.company }}</p>
+                    <div class="job-meta">
+                        <span class="meta-itemm">
+                            <i class="fa fa-map-marker-alt"></i> {{ job.location }}
+                        </span>
+                        <span class="meta-itemm">
+                            <i class="fa fa-dollar-sign"></i> {{ job.salaryDisplay }}
+                        </span>
+                        <span class="meta-itemm">
+                            <i class="fa fa-calendar-alt"></i> {{ job.deadline | date:'MMMM d, y' }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-right">
+                <span class="job-type">{{ job.type }}</span>
+                <i class="fa fa-bookmark bookmark-icon"></i>
+                <button class="apply-now" (click)="openModal(job)">Apply Now →</button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" *ngIf="filteredJobs.length > 0">
+            <button class="arrow" (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+                ←
+            </button>
+
+            <ng-container *ngFor="let page of pages">
+                <button class="page-btn" [class.active]="currentPage === page" (click)="goToPage(page)">
+                    {{ page }}
+                </button>
+            </ng-container>
+
+            <button class="arrow" (click)="goToNextPage()" [disabled]="currentPage === totalPages">
+                →
+            </button>
+        </div>
+    </section>
+</div>
+
+<!-- MODAL DÉTAILS JOB -->
+<div *ngIf="applicationStep === 1" class="modal-backdrop" (click)="closeModal()"></div>
+
+<div *ngIf="applicationStep === 1" class="job-modal">
+    <button class="modal-close-btn" (click)="closeModal()">✖</button>
+
+    <div class="modal-header">
+        <div class="company-info">
+            <h2>{{ selectedJob?.recruiter?.companyName || selectedJob?.company || 'Company' }}</h2>
+            <h3>{{ selectedJob?.jobTitle || selectedJob?.title }}</h3>
+        </div>
+
+        <div class="meta-box">
+            <div class="meta-item">
+                <p class="label">Location</p>
+                <p class="value">{{ selectedJob?.city || selectedJob?.location }}</p>
+            </div>
+            <div class="meta-item">
+                <p class="label">Type</p>
+                <p class="value">{{ selectedJob?.employmentType || selectedJob?.type }}</p>
+            </div>
+            <div class="meta-item">
+                <p class="label">Salary</p>
+                <p class="value">
+                    {{ selectedJob?.minSalary ? (selectedJob?.minSalary | currency) : '' }}
+                    {{ selectedJob?.maxSalary ? ' - ' + (selectedJob?.maxSalary | currency) : selectedJob?.salary }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <h4>Job Description</h4>
+        <div [innerHTML]="selectedJob?.jobDescription || 'No description available.'"></div>
+
+        <h4>Required Skills</h4>
+        <div class="skills-list">
+            <span *ngFor="let skill of selectedJob?.skillsAndQualifications" class="skill-tag">
+                {{ skill }}
+            </span>
+        </div>
+
+        <h4>Why Join Us</h4>
+        <p>{{ selectedJob?.whyJoinUs || 'No information provided.' }}</p>
+
+        <h4>Contact Information</h4>
+        <div class="contact-info">
+            <p><strong>📍 Location:</strong> {{ selectedJob?.city || selectedJob?.location }}</p>
+            <p *ngIf="selectedJob?.recruiter?.phone">
+                <strong>📞 Phone:</strong> {{ selectedJob?.recruiter?.phone }}
+            </p>
+            <p *ngIf="selectedJob?.recruiter?.companyEmail">
+                <strong>📧 Email:</strong> 
+                <a [href]="'mailto:' + selectedJob?.recruiter?.companyEmail">
+                    {{ selectedJob?.recruiter?.companyEmail }}
+                </a>
+            </p>
+        </div>
+
+        <div class="expire-date">
+            <strong>Application deadline:</strong> 
+            {{ (selectedJob?.applicationDeadline || selectedJob?.deadline) | date:'longDate' }}
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="apply-button" (click)="applyForJob()">Apply Now →</button>
+    </div>
+</div>
+
+<!-- MODAL FORMULAIRE -->
+<div *ngIf="applicationStep === 2" class="modal-backdrop" (click)="closeModal()"></div>
+
+<div *ngIf="applicationStep === 2" class="application-modal">
+    <button class="close-btn" (click)="closeModal()">✖</button>
+    <h2>Application Form</h2>
+<div class="form-scroll-container">
+    <form (submit)="submitForm()">
+        <label>Your Full name</label>
+        <input type="text" [(ngModel)]="nom" name="nom" required />
+
+        <label>COVER LETTER</label>
+        <textarea rows="10" [(ngModel)]="coverLetter" name="coverLetter" required></textarea>
+
+        <div class="cv-option-selector">
+            <label>
+                <input type="radio" name="cvOption" [(ngModel)]="cvOption" value="existing" 
+                       (change)="onCvOptionChange('existing')">
+                Use existing CV
+            </label>
+            <label>
+                <input type="radio" name="cvOption" [(ngModel)]="cvOption" value="new" 
+                       (change)="onCvOptionChange('new')">
+                Upload new CV
+            </label>
+        </div>
+
+        <!-- Section pour les CV existants -->
+        <div *ngIf="cvOption === 'existing'" class="existing-cv-section">
+            <label>Select a CV from your profile:</label>
+            <select [(ngModel)]="selectedExistingCv" name="selectedExistingCv" required>
+                <option *ngFor="let cv of savedCvs" [value]="cv.id">
+                    {{ cv.name }} ({{ cv.uploadDate | date:'shortDate' }})
+                </option>
+            </select>
+            
+            <div *ngIf="selectedExistingCv" class="cv-preview">
+                <a (click)="previewCv(selectedExistingCv)" class="preview-link">
+                    Preview selected CV
+                </a>
+            </div>
+        </div>
+
+        <!-- Section pour le nouveau téléchargement -->
+        <div *ngIf="cvOption === 'new'" class="upload-box">
+            <label for="fileUpload">
+                <i class="fa fa-upload upload-icon"></i><br />
+                <span class="browse">Browse CV or drop here</span><br />
+                <span class="hint">PDF, DOC or DOCX. Max size: 5 MB</span>
+            </label>
+            <input type="file" id="fileUpload" (change)="handleFile($event)" hidden accept=".pdf,.doc,.docx" />
+            <div *ngIf="selectedFile" class="file-info">
+                Selected file: {{ selectedFile.name }}
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">Submit Application</span>
+            <span *ngIf="isSubmitting">
+                <i class="fa fa-spinner fa-spin"></i> Processing...
+            </span>
+        </button>
+    </form>
+  </div>
+</div>

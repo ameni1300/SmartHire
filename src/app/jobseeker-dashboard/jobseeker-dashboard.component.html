@@ -1,0 +1,123 @@
+<header class="navbar">
+    <div class="logo-group">
+        <img src="../../assets/image.png" alt="SmartHire" class="brand-logo">
+        <span class="brand-name">SmartHire</span>
+    </div>
+    <nav class="nav-links">
+        <a (click)="goToSearch()">SEARCH JOB</a>
+        <a >DASHBOARD</a>
+        <a >ChatBot</a>
+    </nav>
+   <div class="profile-circle" (click)="toggleProfileMenu()">
+    <img src="../../assets/imgprof.png" alt="Profile" />
+  </div>
+
+    <div class="profile-menu" *ngIf="showProfileMenu">
+  <ul>
+    <li (click)="goToProfile()">My Profile</li>
+    <li (click)="goToSettings()">Settings</li>
+   <li (click)="logout()">
+    <i class="fas fa-sign-out-alt logout-icon"></i> Log out
+  </li>
+
+  </ul>
+</div>
+</header>
+
+<!-- dashboard.component.html -->
+<!-- ... (header inchangé) ... -->
+
+<div class="dashboard-container">
+  <h1>Welcome <b>{{ nom }}</b></h1>
+  <h3 class="section-title">Recent Job Applications</h3>
+
+  <div *ngIf="appliedJobs.length === 0" class="no-applications">
+    <p>You haven't applied to any jobs yet.</p>
+    <button (click)="goToSearch()" class="search-btn">Search Jobs</button>
+  </div>
+
+  <table class="job-table" *ngIf="appliedJobs.length > 0">
+    <thead>
+      <tr>
+        <th>Job Title</th>
+        <th>Category</th>
+        <th>Date Applied</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of appliedJobs">
+        <td class="job-info">
+          <div>
+            <div class="job-title">{{ job.title }}</div>
+            <div class="job-company">{{ job.company }}</div>
+            <div class="job-location">{{ job.location }}</div>
+          </div>
+        </td>
+        <td><span class="tag">{{ job.type }}</span></td>
+        <td>{{ job.dateApplied | date:'MMM d, y ' }}</td>
+        <td>
+          <span [ngClass]="{
+            'active-status': job.status === 'Active', 
+            'expired-status': job.status === 'Expired'
+          }">
+            {{ job.status }}
+          </span>
+        </td>
+        <td>
+          <button (click)="openModal(job)" class="view-btn">View Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+ <!-- Backdrop -->
+<div class="modal-backdrop" *ngIf="showModal" (click)="closeModal()"></div>
+
+<!-- Modal -->
+<div class="application-modal" *ngIf="showModal" (click)="$event.stopPropagation()">
+  <button class="modal-close-btn" (click)="closeModal()">✖</button>
+
+  <div class="modal-header">
+    <div class="company-info">
+      <h2>{{ selectedJob?.company }}</h2>
+      <h3>{{ selectedJob?.title }}</h3>
+    </div>
+
+    <div class="meta-box">
+      <div class="meta-item">
+        <p class="label">📍 Location</p>
+        <p class="value">{{ selectedJob?.location }}</p>
+      </div>
+      <div class="meta-item">
+        <p class="label">🗂 Category</p>
+        <p class="value">{{ selectedJob?.type }}</p>
+      </div>
+      <div class="meta-item">
+        <p class="label">💰 Salary</p>
+        <p class="value">{{ selectedJob?.salary }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <h4>📄 Company Description</h4>
+    <p>{{ selectedJob?.description || 'No description available.' }}</p>
+
+    <h4>📞 Contact Information</h4>
+    <div class="contact-info">
+      <p><strong>Website:</strong> {{ selectedJob?.companyWebsite }}</p>
+      <p><strong>Phone:</strong> {{ selectedJob?.phone }}</p>
+      <p><strong>Email:</strong>
+        <a [href]="'mailto:' + selectedJob?.email">{{ selectedJob?.email }}</a>
+      </p>
+    </div>
+
+    <div class="expire-date">
+      📅 Expire date: {{ selectedJob?.deadline || '04/08/2025' }}
+    </div>
+  </div>
+</div>
